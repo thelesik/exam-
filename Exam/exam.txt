@@ -1,0 +1,181 @@
+1.
+C-style passing by default. (Pionter)
+
+#include <string>
+#include <iostream>
+void PrintString(char* myString)
+{
+    for (int i = 0; myString[i] != '\0'; ++i) {
+        std::cout << myString[i];
+    }
+}
+
+int main() {
+
+    char stringc[] = "This is string to return";
+    PrintString(stringc); // or name.data()
+    return 0;
+}
+
+
+
+2. 
+Minimum of 14.
+#include <string>
+#include <iostream>
+void PrintString(char* myString)
+{
+    int count = 0;
+    for (int i = 0; myString[i] != '\0'; ++i) {
+        count++;
+        std::cout << myString[i];
+    }
+    //std::cout << std::endl << count;
+}
+
+int main() {
+
+    char stringc[14] = { "Hello, World!" }; //13 + \0
+   // std::cout << sizeof(stringc) << std::endl;
+    PrintString(stringc); // or name.data()
+    return 0;
+}
+
+
+3.
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+int* Array(int size) {
+    int* array = new int[size];
+    for (int i = 0; i < size; i++) {
+        cout << endl << "Element: ";
+        cin >> array[i];
+    }
+    return array;
+}
+
+int* ArrayCopy(int size) {
+    int* arraybase;
+    arraybase = Array(size);
+    int count = 0;
+    int* array = new int[size];
+    for (int i = 0; i < size; i++) {
+        if (arraybase[i] % 2 == 0) {
+            array[count] = arraybase[i];
+            count++;
+        }
+    }
+
+   // cout << count << endl;
+    array[size-1] = count;//last element is size
+    return array;
+}
+
+int main() {
+    int size;
+    int* copyarray;
+    cout << "Size: ";
+    cin >> size;
+    copyarray = ArrayCopy(size);
+    int n = copyarray[size - 1];
+    cout << "New array: ";
+    for (int i = 0; i < n; i++) {
+        cout << copyarray[i] <<endl;
+    }
+
+    return 0;
+}
+
+4.
+#include<iostream>  
+#include<string>  
+#include <array>  
+#include <algorithm> 
+ 
+const int ten = 10000; 
+using namespace std; 
+ 
+array<int, ten> Array(int size) {  
+    array<int, ten> ary; 
+    array<int, ten>::iterator ptr = ary.begin(); 
+    array<int, ten>::iterator ftr = ary.end(); 
+    for (auto it = ptr; it != ftr -10000 + size; it++) //uglycode 
+    { 
+        cout << "element "; 
+        cin >> *it; 
+    } 
+   // for (int i = 0; i < size; i++) { //could be more readable code 
+   //     cout << "Element "; 
+   //     int x; 
+   //     cin >> x; 
+   //     ary[i] = x; 
+   // } 
+    return ary; 
+} 
+ 
+array<int, ten> ArrayEven( int size, int &n) { 
+    array<int, ten> arr = Array(size); 
+    array<int, ten>::iterator ptr = arr.begin(); 
+    array<int, ten>::iterator ftr = arr.end(); 
+    array<int, ten> ary; 
+    int count = 0; 
+    for (auto it = ptr; it != ftr - 10000 + size; it++) { 
+        if (*it % 2 == 0) { 
+            ary[count] = *it; 
+            count++; 
+        } 
+    } 
+    n = count; 
+   // cout << endl << n << endl; 
+ 
+    return ary; 
+} 
+ 
+int main() { 
+    cout << "Enter size: "; 
+    int size; 
+    cin >> size; 
+    int n = 0; 
+    array<int, ten> newarray = ArrayEven(size, n); 
+    cout << "Even array: " << endl; 
+    for (int i = 0; i < n; i++) { 
+        cout << newarray[i] << endl; 
+    } 
+ 
+    return 0; 
+}
+
+
+
+7. Private members from class A are not directly accesible in deriver class B. 
+	
+
+8.
+Memory would not be automaticly released.
+We have to have destructor to allow program release the memory when object run out of scope, program will call it when it goes out of scope.
+It will be released only of you use destructor(destructor function)
+
+Memory has been allocated not be released automatically. 
+When the object goes out of scope, it calls destructure function. 
+We can release the allocated space using this destructure function.
+
+Example:
+
+class Task8
+{
+   private:
+      int *x;
+      
+   public:
+      void allocate(size){
+            x = new int(size);
+      };
+
+      ~Task8(){ // destructor
+         delete x;
+      }
+
+};
