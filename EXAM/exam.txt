@@ -1,0 +1,501 @@
+========================================================================================
+========================================================================================
+========================================================================================
+========================================================================================
+1.
+
+
+
+C-style passing by default. (Pionter)
+
+#include <string>
+#include <iostream>
+void PrintString(char* myString)
+{
+    for (int i = 0; myString[i] != '\0'; ++i) {
+        std::cout << myString[i];
+    }
+}
+
+int main() {
+
+    char stringc[] = "This is string to return";
+    PrintString(stringc); // or name.data()
+    return 0;
+}
+
+
+========================================================================================
+========================================================================================
+========================================================================================
+========================================================================================
+2. 
+
+
+
+Minimum of 14.
+#include <string>
+#include <iostream>
+void PrintString(char* myString)
+{
+    int count = 0;
+    for (int i = 0; myString[i] != '\0'; ++i) {
+        count++;
+        std::cout << myString[i];
+    }
+    //std::cout << std::endl << count;
+}
+
+int main() {
+
+    char stringc[14] = { "Hello, World!" }; //13 + \0
+   // std::cout << sizeof(stringc) << std::endl;
+    PrintString(stringc); // or name.data()
+    return 0;
+}
+
+========================================================================================
+========================================================================================
+========================================================================================
+========================================================================================
+3.
+
+
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+int* Array(int size) {
+    int* array = new int[size];
+    for (int i = 0; i < size; i++) {
+        cout << endl << "Element: ";
+        cin >> array[i];
+    }
+    return array;
+}
+
+int* ArrayCopy(int size) {
+    int* arraybase;
+    arraybase = Array(size);
+    int count = 0;
+    int* array = new int[size];
+    for (int i = 0; i < size; i++) {
+        if (arraybase[i] % 2 == 0) {
+            array[count] = arraybase[i];
+            count++;
+        }
+    }
+
+   // cout << count << endl;
+    array[size-1] = count;//last element is size
+    return array;
+}
+
+int main() {
+    int size;
+    int* copyarray;
+    cout << "Size: ";
+    cin >> size;
+    copyarray = ArrayCopy(size);
+    int n = copyarray[size - 1];
+    cout << "New array: ";
+    for (int i = 0; i < n; i++) {
+        cout << copyarray[i] <<endl;
+    }
+
+    return 0;
+}
+========================================================================================
+========================================================================================
+========================================================================================
+========================================================================================
+4.
+
+
+
+
+#include<iostream>  
+#include<string>  
+#include <array>  
+#include <algorithm> 
+ 
+const int ten = 10000; 
+using namespace std; 
+ 
+array<int, ten> Array(int size) {  
+    array<int, ten> ary; 
+    array<int, ten>::iterator ptr = ary.begin(); 
+    array<int, ten>::iterator ftr = ary.end(); 
+    for (auto it = ptr; it != ftr -10000 + size; it++) //uglycode i guess
+    { 
+        cout << "element "; 
+        cin >> *it; 
+    } 
+   // for (int i = 0; i < size; i++) { //could be more readable code  i guess
+   //     cout << "Element "; 
+   //     int x; 
+   //     cin >> x; 
+   //     ary[i] = x; 
+   // } 
+    return ary; 
+} 
+ 
+array<int, ten> ArrayEven( int size, int &n) { 
+    array<int, ten> arr = Array(size); 
+    array<int, ten>::iterator ptr = arr.begin(); 
+    array<int, ten>::iterator ftr = arr.end(); 
+    array<int, ten> ary; 
+    int count = 0; 
+    for (auto it = ptr; it != ftr - 10000 + size; it++) { 
+        if (*it % 2 == 0) { 
+            ary[count] = *it; 
+            count++; 
+        } 
+    } 
+    n = count; 
+   // cout << endl << n << endl; 
+ 
+    return ary; 
+} 
+ 
+int main() { 
+    cout << "Enter size: "; 
+    int size; 
+    cin >> size; 
+    int n = 0; 
+    array<int, ten> newarray = ArrayEven(size, n); 
+    cout << "Even array: " << endl; 
+    for (int i = 0; i < n; i++) { 
+        cout << newarray[i] << endl; 
+    } 
+ 
+    return 0; 
+}
+
+========================================================================================
+========================================================================================
+========================================================================================
+========================================================================================
+5.
+
+Inheritance:
+In inheritance, the child class is dependent upon parent class.
+if a class is child of another class then we have is a relation
+
+class B {
+};
+class A : public B {
+};
+
+
+
+
+Composition:
+In composition, both child class and parent class are independent.
+if an object contain an instance of a class this is called has a relation.
+
+class B {
+};
+class A {
+  B b;
+};
+
+========================================================================================
+========================================================================================
+========================================================================================
+========================================================================================
+6.
+
+Polymorphism:
+
+Polymorphism is an object-oriented programming concept that refers to the ability of a variable,
+ function or object to take on multiple forms.
+In a programming language that exhibits polymorphism, objects of classes belonging to the same hierarchical
+ tree (inherited from a common base class) may possess functions bearing the same name, but each having different behaviors.
+Virtual function  - A virtual function is a member function of base class which can be redefined by derived class. 
+Classes having virtual functions are not abstract.
+
+Pure virtual function - A pure virtual function is a member function of base class whose only declaration is provided in base class 
+and should be defined in derived class otherwise derived class also becomes abstract.
+Base class containing pure virtual function becomes abstract.
+
+Abstract Base Classes - is a class that contains one or more pure virtual member functions. 
+Such a class is not concrete and cannot be instantiated using the new operator. 
+Instead, it is used as a base class where derived classes provide the implementations of the pure virtual methods.
+
+
+========================================================================================
+========================================================================================
+========================================================================================
+========================================================================================
+7. Private members from class A are not directly accesible in deriver class B. 
+
+
+	
+========================================================================================
+========================================================================================
+========================================================================================
+========================================================================================
+8.
+
+
+
+
+Memory would not be automaticly released.
+We have to have destructor to allow program release the memory when object run out of scope, program will call it when it goes out of scope.
+It will be released only of you use destructor(destructor function)
+
+Memory has been allocated not be released automatically. 
+When the object goes out of scope, it calls destructure function. 
+We can release the allocated space using this destructure function.
+
+Example:
+
+class Task8
+{
+   private:
+      int *x;
+      
+   public:
+      void allocate(size){
+            x = new int(size);
+      };
+
+      ~Task8(){ // destructor
+         delete x;
+      }
+
+};
+
+
+
+========================================================================================
+========================================================================================
+========================================================================================
+========================================================================================
+9.
+
+
+Copy Constructor is used to initialize an object using another object of the same class.
+A copy constructor is a member function of a class that initializes an object with an existing object of the same class. 
+In other words, it creates an exact copy of an already existing object and stores it into a new object
+
+In C++, a Copy Constructor may be called in the following cases: 
+1. When an object of the class is returned by value. 
+2. When an object of the class is passed (to a function) by value as an argument. 
+3. When an object is constructed based on another object of the same class. 
+4. When the compiler generates a temporary object.
+
+
+========================================================================================
+========================================================================================
+========================================================================================
+========================================================================================
+10: //this is complete program not only class functions that needed is commented
+
+// task11.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+#include <string>
+#include <iostream>
+#include "Header.h"
+// in this program I modified my code from Book list assignment, gor comfortable template to run functions
+
+using namespace std;
+
+
+class List {
+private:
+    string* elements = nullptr;
+    int size;
+
+
+public:
+    void GetName();
+    int GetSize();
+    void Display();
+    void AddBook(string value);
+    void FindFirst();
+    void FindLast();
+    void Sort();
+    string at(int index) {
+        if (index < size) {
+            return elements[index];
+        }
+    }
+    List();
+    ~List();
+};
+void List::Display() {
+    for (int i = 0; i < size; i++) {
+        cout << at(i) << endl;
+    }
+}
+int List::GetSize() {
+    return size;
+}
+void List::AddBook(string value) {
+    string* tmpElementsArray = new string[size + 1];
+
+    for (int i = 0; i < size; i++) {
+        tmpElementsArray[i] = elements[i];
+    }
+
+    delete[] elements;
+    elements = tmpElementsArray;
+    elements[size] = value;
+    size++;
+}
+List::~List() {
+    delete[]elements;
+}
+List::List() {
+    elements = nullptr;
+    size = 0;
+}
+void List::GetName() {
+    double count = ReadValue<double>("Please input the name of books "); // th size is beoing increased after we add each member of the class
+    for (int i = 0; i <= count - 1; i++) {
+        string tempbook = "";
+        cout << "Book - ";
+        cin >> tempbook;
+        AddBook(tempbook);
+    }
+
+}
+void List::FindFirst() {//this is what was required by exam. This function does not sort base array(does not modifi it ), it creates different array copy from original, sort it and displaying requested info 
+    int size = GetSize();
+    string* tmpElementsArray = new string[size];
+    string ch = "";
+    for (int i = 0; i < size; i++) {
+        tmpElementsArray[i] = elements[i];
+    }
+    for (int i = 0; i <= size; i++) {
+        for (int j = 0; j < size - 1; j++) {
+            if (tmpElementsArray[j] > tmpElementsArray[j + 1])
+            {
+                ch = tmpElementsArray[j];
+                tmpElementsArray[j] = tmpElementsArray[j + 1];
+                tmpElementsArray[j + 1] = ch;
+
+            }
+        }
+    }
+    cout << "First Alphabeticly name is: " << tmpElementsArray[0] << endl;
+}
+void List::FindLast() {//this is what was required by exam. This function does not sort base array(does not modifi it ), it creates different array copy from original, sort it and displaying requested info 
+    int size = GetSize();
+    string* tmpElementsArray = new string[size];
+    string ch = "";
+    for (int i = 0; i < size; i++) {
+        tmpElementsArray[i] = elements[i];
+    }
+    for (int i = 0; i <= size; i++) {
+        for (int j = 0; j < size - 1; j++) {
+            if (tmpElementsArray[j] > tmpElementsArray[j + 1])
+            {
+                ch = tmpElementsArray[j];
+                tmpElementsArray[j] = tmpElementsArray[j + 1];
+                tmpElementsArray[j + 1] = ch;
+
+            }
+        }
+    }
+    cout << "Last Alphabeticly name is: " << tmpElementsArray[size-1] << endl;
+}
+
+void List::Sort() { //this is what was required by exam it sort original array
+    int size = GetSize();
+    //string* tmpElementsArray = new string[size];
+    string ch = "";
+    for (int i = 0; i <= size; i++) {
+        for (int j = 0; j < size - 1; j++) {
+            if (elements[j] > elements[j + 1])
+            {
+                ch = elements[j];
+                elements[j] = elements[j + 1];
+                elements[j + 1] = ch;
+          
+            }
+        }
+    }
+}
+int main()
+{
+    List s;
+    s.GetName();
+    s.FindLast();
+    s.FindFirst();
+    s.Sort();
+   // s.Sort();
+   // s.Display();
+
+
+}
+/*Create a class that will store a list of names.
+Your class needs to include a function that will return the name 
+that appears first aphabetically, and another function that should
+return the name that appears last alphabetically. You also need to 
+include a function that will sort the list alphabetically. 
+The class does not need to be case insensitive. 
+The three functions should make use of the algorithms discussed 
+in this class*/
+
+
+
+//Next is ReadValue function
+
+Header.h 
+
+
+(#pragma once
+/*
+ * Header file for ReadValue
+*/
+
+#include <iostream>
+#include <climits>
+#include <string>
+
+template<typename inputType>
+inputType ReadValue(std::string prompt)
+{
+	inputType returnValue = 0;
+	std::cout << prompt;
+	std::cin >> returnValue;
+	while (std::cin.fail()) {
+		std::cout << "Error! Cannot read input.\n";
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
+		std::cout << prompt;
+		std::cin >> returnValue;
+	}
+	return returnValue;
+}
+
+
+template<typename inputType>
+inputType ReadValue(std::string prompt, inputType minValue)
+{
+	inputType returnValue = 0;
+	returnValue = ReadValue<inputType>(prompt);
+	while (returnValue < minValue) {
+		std::cout << "Error!  Value must be >= " << minValue << std::endl;
+		returnValue = ReadValue<inputType>(prompt);
+	}
+	return returnValue;
+}
+
+
+template<typename inputType>
+inputType ReadValue(std::string prompt, inputType minValue, inputType maxValue)
+{
+	inputType returnValue = 0;
+	returnValue = ReadValue<inputType>(prompt, minValue);
+	while (returnValue > maxValue) {
+		std::cout << "Error!  Value must be <= " << maxValue << std::endl;
+		returnValue = ReadValue<inputType>(prompt, minValue);
+	}
+	return returnValue;
+})
