@@ -213,7 +213,7 @@ Polymorphism:
  This is the concept that allow varible and functions, object to take on multiple forms. (work in different forms). 
  For example in OOP that exhibits polymorphism,  classes or objects that are inherited from base class may have the same name but different functionality. 
  
- Actualy same as function overloading bit in the class.
+ Actualy same as function overloading but in the class.
  
  Example: 
  
@@ -241,16 +241,14 @@ Polymorphism:
 };
  
  
- 
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Virtual function  -  
 Is a function that exist in base class and redefined in deriver class.
 Classes having virtual functions are not abstract.
 
 In the example case function print from base clsas would be redefined(overwriten), in the deriver class.
-So if we would call print, it would be called from deriver class.
+So if we would call print from base class, it would be called from deriver class. 
 Example: 
-
-
 
 #include<iostream>
 using namespace std;
@@ -270,18 +268,55 @@ public:
         cout << "print derived class\n";
     }
 };
+if we call prrint() from ***base*** we will get the output from print() from ***deriver*** class. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-
-Pure virtual function - A pure virtual function is a member function of base class whose only declaration is provided in base class 
-and should be defined in derived class otherwise derived class also becomes abstract.
+Pure virtual function -  Is actually same as virtual but when you writting pure function, function in base class should have no implementation. 
+You have to give some sense(implementations) in the derived function. In base class it has to be declared, and defined in deriver class. 
 Base class containing pure virtual function becomes abstract.
 
-Abstract Base Classes - is a class that contains one or more pure virtual member functions. 
-Such a class is not concrete and cannot be instantiated using the new operator. 
-Instead, it is used as a base class where derived classes provide the implementations of the pure virtual methods.
 
+Example:
+
+
+class base {
+public:
+     virtual void print() = 0;
+};
+ 
+class derived : public base {
+public:
+    void print()
+    {
+        cout << "print derived class\n";
+    }
+};
+
+if we call prrint() from ***base*** we will get the output from print() from ***deriver*** class as well as virtual.  
+The concept i to leave base class virtual member with no implementation. 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Abstract Base Classes - This one may be concidered as opposite to virtual functions; in this scenario you would not be able to accsess function print from the derived class when you'll call it. 
+
+class base {
+public:
+     void print()
+    {
+        cout << "print base class\n";
+    }
+};
+ 
+class derived : public base {
+public:
+    void print()
+    {
+        cout << "print derived class\n";
+    }
+};
+if you would call ***base*** class function.  it will call print() from ***base*** class. 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ========================================================================================
 ========================================================================================
