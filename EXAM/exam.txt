@@ -210,12 +210,69 @@ class A {
 
 Polymorphism:
 
-Polymorphism is an object-oriented programming concept that refers to the ability of a variable,
- function or object to take on multiple forms.
-In a programming language that exhibits polymorphism, objects of classes belonging to the same hierarchical
- tree (inherited from a common base class) may possess functions bearing the same name, but each having different behaviors.
-Virtual function  - A virtual function is a member function of base class which can be redefined by derived class. 
+ This is the concept that allow varible and functions, object to take on multiple forms. (work in different forms). 
+ For example in OOP that exhibits polymorphism,  classes or objects that are inherited from base class may have the same name but different functionality. 
+ 
+ Actualy same as function overloading bit in the class.
+ 
+ Example: 
+ 
+ class Geeks
+{
+    public:
+      
+    // function with 1 int parameter
+    void func(int x)
+    {
+        cout << "value of x is " << x << endl;
+    }
+      
+    // function with same name but 1 double parameter
+    void func(double x)
+    {
+        cout << "value of x is " << x << endl;
+    }
+      
+    // function with same name and 2 int parameters
+    void func(int x, int y)
+    {
+        cout << "value of x and y is " << x << ", " << y << endl;
+    }
+};
+ 
+ 
+ 
+Virtual function  -  
+Is a function that exist in base class and redefined in deriver class.
 Classes having virtual functions are not abstract.
+
+In the example case function print from base clsas would be redefined(overwriten), in the deriver class.
+So if we would call print, it would be called from deriver class.
+Example: 
+
+
+
+#include<iostream>
+using namespace std;
+ 
+class base {
+public:
+    virtual void print()
+    {
+        cout << "print base class\n";
+    }
+};
+ 
+class derived : public base {
+public:
+    void print()
+    {
+        cout << "print derived class\n";
+    }
+};
+
+
+
 
 Pure virtual function - A pure virtual function is a member function of base class whose only declaration is provided in base class 
 and should be defined in derived class otherwise derived class also becomes abstract.
