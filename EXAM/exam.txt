@@ -380,6 +380,57 @@ In C++, a Copy Constructor may be called in the following cases:
 3. When an object is constructed based on another object of the same class. 
 4. When the compiler generates a temporary object.
 
+example:
+
+#include<iostream> 
+using namespace std; 
+
+class Coordinate 
+{ 
+  private: 
+    int x_cor, y_cor; 
+
+  public: 
+
+    // default constructor
+    Coordinate(int x, int y) 
+    { 
+      x_cor = x;
+      y_cor = y;
+    } 
+
+	// Copy constructor 
+	Coordinate(const Coordinate &cor) 
+ 
+    x_cor = cor.x_cor;
+    y_cor = cor.y_cor;
+  } 
+
+	int get_x_cor(){
+    return x_cor; 
+  }
+  	
+
+	int get_y_cor(){
+    return y_cor; 
+  }
+}; 
+
+int main() 
+{ 
+  // default constructor called here
+	Coordinate cor1(2, 4); 
+
+  // Copy constructor is called here 
+	Coordinate cor2 = cor1; 
+
+	// Showing results 
+	cout << "cor1 = (" << cor1.get_x_cor() << "," << cor1.get_y_cor() << ")" << endl; 
+	cout << "cor2 = (" << cor2.get_x_cor() << "," << cor2.get_y_cor() << ")" << endl; 
+	
+
+	return 0; 
+}
 
 ========================================================================================
 ========================================================================================
