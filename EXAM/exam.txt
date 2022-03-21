@@ -436,8 +436,7 @@ int main()
 10: //this is complete program not only class functions that needed is commented
 
 // task11.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-#include <string>
+//#include <string>
 #include <iostream>
 #include "Header.h"
 // in this program I modified my code from Book list assignment, gor comfortable template to run functions
@@ -542,7 +541,7 @@ void List::FindLast() {//this is what was required by exam. This function does n
             }
         }
     }
-    cout << "Last Alphabeticly name is: " << tmpElementsArray[size-1] << endl;
+    cout << "Last Alphabeticly name is: " << tmpElementsArray[size - 1] << endl;
 }
 
 void List::Sort() { //this is what was required by exam it sort original array
@@ -556,7 +555,7 @@ void List::Sort() { //this is what was required by exam it sort original array
                 ch = elements[j];
                 elements[j] = elements[j + 1];
                 elements[j + 1] = ch;
-          
+
             }
         }
     }
@@ -568,8 +567,7 @@ int main()
     s.FindLast();
     s.FindFirst();
     s.Sort();
-   // s.Sort();
-   // s.Display();
+    s.Display();
 
 
 }
