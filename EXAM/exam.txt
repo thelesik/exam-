@@ -339,9 +339,6 @@ Memory would not be automaticly released.
 We have to have destructor to allow program release the memory when object run out of scope, program will call it when it goes out of scope.
 It will be released only of you use destructor(destructor function)
 
-Memory has been allocated not be released automatically. 
-When the object goes out of scope, it calls destructure function. 
-We can release the allocated space using this destructure function.
 
 Example:
 
